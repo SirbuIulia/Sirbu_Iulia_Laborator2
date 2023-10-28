@@ -21,5 +21,7 @@ namespace Sirbu_Iulia_Laborator2.Data
         public DbSet<Sirbu_Iulia_Laborator2.Models.Author>? Author { get; set; }
 
         public DbSet<Sirbu_Iulia_Laborator2.Models.Category>? Category { get; set; }
+
+        public DbSet<Sirbu_Iulia_Laborator2.Models.BookCategory>? BookCategory { get; set; }
     }
 }

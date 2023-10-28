@@ -21,11 +21,11 @@ namespace Sirbu_Iulia_Laborator2.Pages.Books
 
         public IActionResult OnGet()
         {
-           /*  var authorList = _context.Author.Select(x => new
+             var authorList = _context.Author.Select(x => new
             {
                 x.ID,
                 FullName = x.LastName + " " + x.FirstName
-            }); */
+            }); 
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID", "FullName");
             var book = new Book();
