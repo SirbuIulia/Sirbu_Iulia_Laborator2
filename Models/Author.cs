@@ -7,9 +7,17 @@ namespace Sirbu_Iulia_Laborator2.Models
         public int ID { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public ICollection<Book>? Books { get; set; }
-
+        
         [Display(Name = "Full Name")]
-        public string FullName => FirstName + " " + LastName;
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+        public ICollection<Book>? Books { get; set; }
     }
 }
+
+

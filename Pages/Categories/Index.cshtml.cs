@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Sirbu_Iulia_Laborator2.Data;
 using Sirbu_Iulia_Laborator2.Models;
+using Sirbu_Iulia_Laborator2.Models.ViewModels;
+
 
 namespace Sirbu_Iulia_Laborator2.Pages.Categories
 {
@@ -19,14 +21,25 @@ namespace Sirbu_Iulia_Laborator2.Pages.Categories
             _context = context;
         }
 
-        public IList<Category> Category { get;set; } = default!;
+        public IList<Category> Category { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public CategoriesIndexData CategoryData { get; set; }
+        public int CategoryID { get; set; }
+        public int BookID { get; set; }
+        public async Task OnGetAsync(int? id, int? bookID)
         {
-            if (_context.Category != null)
+            CategoryData = new CategoriesIndexData(); CategoryData.Publishers = await _context.Category.Include(i => i.BookCategories).ThenInclude(c => c.Book.Author).OrderBy(i => i.CategoryName).ToListAsync();
+            if (id != null)
             {
-                Category = await _context.Category.ToListAsync();
+                CategoryID = id.Value;
+                Category category = CategoryData.Publishers.Where(i => i.ID == id.Value).Single();
+                CategoryData.Books = category.BookCategories.Select(bc => bc.Book).ToList();
             }
         }
+
+        /*if (_context.Category != null)
+        {
+            Category = await _context.Category.ToListAsync();
+        }*/
     }
 }

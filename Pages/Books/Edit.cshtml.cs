@@ -28,7 +28,7 @@ namespace Sirbu_Iulia_Laborator2.Pages.Books
                 return NotFound();
             }
 
-            //se va include Author conform cu sarcina de la lab 2
+            
 
             Book = await _context.Book
  .Include(b => b.Publisher)
